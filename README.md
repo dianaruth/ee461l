@@ -1,4 +1,4 @@
-#### ee461l_blog
+# ee461l_blog
 ## <insert link here>
 A Google App Engine Blog implemented using servlets and JSP files, with a Bootstrap frontend.
 
