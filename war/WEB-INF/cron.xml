@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <cronentries>
+   <cron>
+     <url>/cron/emaildigestjob</url>
+     <description>Sends an email digest to all subscribed users containing all new posts.</description>
+     <schedule>every 2 minutes</schedule>
+   </cron>
+</cronentries>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+
+  <!-- Servlets -->  
+  <servlet>
+    <servlet-name>send</servlet-name>
+    <servlet-class>blog.AddBlogPost</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>send</servlet-name>
+    <url-pattern>/send</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+	<servlet-name>EmailDigestServlet</servlet-name>
+	<servlet-class>blog.EmailDigestServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>EmailDigestServlet</servlet-name>
+	<url-pattern>/cron/emaildigestjob</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>blog.jsp</welcome-file>
+  </welcome-file-list>
+
+  <filter>
+      <filter-name>ObjectifyFilter</filter-name>
+      <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+	  <filter-name>ObjectifyFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+</web-app>
