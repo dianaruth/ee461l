@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="blog.Post" %>
+<%@ page import="blog.Email" %>
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
@@ -106,7 +107,32 @@
 							Hello! <a style="color: #66CCFF" href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a> to make new posts.
 							<%
 							}
-							%>         	
+							%>
+							<%
+							if (user != null) {
+								ObjectifyService.register(Email.class);
+				            	List<Email> emails = ObjectifyService.ofy().load().type(Email.class).list();
+				            	boolean contains = false;
+				            	for (Email email : emails) {
+				            		String name = user.getEmail();
+				            		if (email.getAddress().equals(name)) {
+				            			contains = true;
+				            			break;
+				            		}
+				            	}
+				            	if (contains) { %>
+				            		<br><br>
+				            		Click below to unsubscribe to the email list.<br><br><form action="unsubscribe" method="post"><input type="hidden" name="email" value="${fn:escapeXml(user.email)}"><input style="width: 170px;" class="btn btn-primary" type="submit" value="Unsubscribe"/></form>
+				            	<%
+				            	}
+				            	else {
+				            	%>
+				            		<br><br>
+									Click below to subscribe to the email list and receive daily email digests of recent posts.<br><br><form action="subscribe" method="post"><input type="hidden" name="email" value="${fn:escapeXml(user.email)}"><input style="width: 150px;" class="btn btn-primary" type="submit" value="Subscribe"/></form>
+								<%
+								}
+							}
+							%>     	
                         </span>
                     </div>
                 </div>
@@ -214,9 +240,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

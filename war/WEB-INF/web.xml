@@ -16,16 +16,36 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     <servlet-name>send</servlet-name>
     <url-pattern>/send</url-pattern>
   </servlet-mapping>
-    
+  
   <servlet>
-	<servlet-name>EmailDigestServlet</servlet-name>
-	<servlet-class>blog.EmailDigestServlet</servlet-class>
+    <servlet-name>subscribe</servlet-name>
+    <servlet-class>blog.Subscribe</servlet-class>
   </servlet>
 
   <servlet-mapping>
-	<servlet-name>EmailDigestServlet</servlet-name>
-	<url-pattern>/cron/emaildigestjob</url-pattern>
+    <servlet-name>subscribe</servlet-name>
+    <url-pattern>/subscribe</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>unsubscribe</servlet-name>
+    <servlet-class>blog.Unsubscribe</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>unsubscribe</servlet-name>
+    <url-pattern>/unsubscribe</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+<servlet-name>EmailDigestServlet</servlet-name>
+<servlet-class>blog.EmailDigestServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>EmailDigestServlet</servlet-name>
+<url-pattern>/cron/emaildigest</url-pattern>
+</servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
